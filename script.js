@@ -7,9 +7,9 @@ var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
-recognition.continuous = false;
+recognition.continuous = true;
 recognition.lang = 'en-US';
-recognition.interimResults = false;
+recognition.interimResults = true; // make this false to avoid intermediate results.
 recognition.maxAlternatives = 1;
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -24,7 +24,7 @@ function start(){
     recognition.start();
 }
 function move(act){
-    if(act == "up"){
+    if(act.includes("up")){
         if(boxy - dy <= 0){
             boxy = 0;
         }else{
@@ -32,7 +32,7 @@ function move(act){
         }
         ctx.clearRect(0, 0, 600, 600);
         ctx.fillRect(boxx, boxy, 150, 150);
-    }else if(act == "down"){
+    }else if(act.includes("down")){
         if(boxy + dy >= 450){
             boxy = 450;
         }else{
@@ -40,7 +40,7 @@ function move(act){
         }
         ctx.clearRect(0, 0, 600, 600);
         ctx.fillRect(boxx, boxy, 150, 150);
-    }else if(act == "left"){
+    }else if(act.includes("left")){
         if( boxx - dx <= 0){
             boxx = 0;
         }else{
@@ -48,7 +48,7 @@ function move(act){
         }
         ctx.clearRect(0, 0, 600, 600);
         ctx.fillRect(boxx, boxy, 150, 150);
-    }else if(act == "right"){
+    }else if(act.includes("right")){
         if( boxx + dx >= 450){
             boxx = 450;
         }else{
@@ -61,7 +61,8 @@ function move(act){
     }
 }
 recognition.onresult = function(event) {
-    var act = event.results[0][0].transcript;
+    var act = event.results[event.results.length - 1][0].transcript;
+    console.log(act);
     diagnostic.textContent = act;
     move(act);
 }
