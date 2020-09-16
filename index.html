@@ -2,12 +2,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>Voice Recognition</title>
 </head>
-<body>
-    <canvas id="canvas" width="600px" height="600px" style="background-color: blueviolet;"></canvas><br>
-    <button onclick="start()">Start</button><br>
-    <p>Response : <span id="diagnostic">Click Start</span></p>
+<body style="background-color: deepskyblue;">
+    <div class="row center">
+        <h3 style="text-transform: uppercase; font-weight: 700; text-decoration: underline;">Voice Recognition</h3>
+        <p>Press Start after that say the word and see.</p>
+        <p>If the word matches then box will move according to word spoken.</p>
+    </div>
+    <div class="row container center">
+        <div class="row">
+            <canvas id="canvas" width="600px" height="600px" style="background-color: blueviolet;"></canvas>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light center deep-orange" type="button" onclick="start()">Start
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+        <div class="row">
+            <p>Response : <span id="diagnostic">Click Start</span></p>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
